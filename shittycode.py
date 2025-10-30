@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-
-#Define security code variables for use in checksum
-
+import string
 #Values
 global I
 global II
@@ -15,7 +13,7 @@ global IX
 global X
 #Query Strings
 q0="What is the first letter of the city that your school is located in?\n"
-q1="What grades are at this school? (e.g. for 3rd, 4th, 5th: 345)"
+q1="What grades are at this school? (e.g. for 3rd, 4th, 5th: 345)\n"
 q2=""
 q3=""
 q4=""
@@ -49,13 +47,12 @@ if isinstance(I,str) != True:
 II = input(q1)
 #Ensure Length is correct
 checklen(II,3)
-#Convert II to a integer for checksum generation
-II = str(II)
-print(str(I,II))
-
-
-
-
+#Convert Variables to integers for checksum generation
+#Convert I to its alphabetical index plus one so that it wont set the full checksum to 0 when multiplies
+I = string.ascii_uppercase.index(I)+1
+II = int(II)+1
+#Development code only
+print((I,II))
 
     
 
