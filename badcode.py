@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import string
-
+import gzip
 # Query Strings
 q0 = "What is the first letter of the city that your school is located in?\n"
 q1 = "What grades are at this school? (e.g. for 3rd, 4th, 5th: 345)\n"
@@ -38,9 +38,9 @@ II_checksum = int(II) + 1
 III_checksum = sum(ord(char) - ord('A') + 1 for char in III)
 
 checksum = hex((int(I_checksum)**int(II_checksum)+int(III_checksum)**17))
-
+raw_debug_checksum = checksum.encode('UTF-8')
+debug_checksum = gzip.compress(raw_debug_checksum)
 if checksum != "0x11646cc7d1146e5e3047340433a1ccf871e03f7da9406e710b00af900cca2729a3cd8795e4218c66cbe31fbc5acee7f6ade38c061724c5e6d04bef144b08506bb6ddd4dc063eb6b6e5ba6a4163fce499b81f127947446faf52f12891130aef0c8fa3feabb47831871fff11437c3b057cd604c935feb0036e8e68902f2e393ea35488ff49ca04a302600ae60fc4924cb92ff31d6a6931f9904cc11c7419000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001259ef91b18bf2cdb269fc60000":
-    print("\nSorry. You didn't pass the security test. Please try again.\nIf you are sure you got all of the questions correct, please notify the software distributor that gave this software to you.\n (P.S. Piss off hackers)")
-    quit
+    print("\nSorry. You didn't pass the security test. Please try again.\nIf you are sure you got all of the questions correct, please notify the software distributor that gave this software to you.\n (P.S. go away hackers!)\nGive your software distributor this code:\n",debug_checksum)
 else:
     print("Checksum success!")
